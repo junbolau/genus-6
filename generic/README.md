@@ -9,4 +9,4 @@ Under ```results/...```, there are 38 supersingular curves of genus 6 in the gen
 
 
 Remarks:
-- For curves with $\# C(\mathbf{F}_2) \in \{ 1,3 \}$, we can do point counts up to $\mathbf{F}_64$
+- For curves with $$\# C(\mathbf{F}_2) \in \{ 1,3 \}$, we can do point counts up to $\mathbf{F}_64$$
