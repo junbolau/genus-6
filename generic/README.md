@@ -6,3 +6,7 @@ This folder contains files used for the computation of supersingular generic cur
 4. ```closeout.sage```: Close out computation by computing the remaining isomorphism classes (uses MAGMA)
 
 Under ```results/...```, there are 38 supersingular curves of genus 6 in the generic case.
+
+
+Remarks:
+- For curves with $\# C(\mathbf{F}_2) \in \{ 1,3 \}$, we can do point counts up to $\mathbf{F}_64$
