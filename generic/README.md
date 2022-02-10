@@ -1,4 +1,4 @@
-This folder contains files used for the computation of supersingular generic curves of genus 6 over F_2. The codes are based on Kedlaya's Part III codes found here: https://github.com/kedlaya/same-class-number/tree/main/Part%20III
+This folder contains files used for the computation of supersingular generic curves of genus 6 over F_2. The codes are based on Kedlaya's codes for "The relative class number one problem for function fields, I, II, III" found here: https://github.com/kedlaya/same-class-number/tree/main/Part%20III
 
 1. Compute the orbits of GL(2,5) on wedge^2 F_2^5 to get ```genus6-flats.txt```
 2. ```sspointcounts_F2.sage ```: Compute F_2 points of elements and compare with supersingular point counts from ```ss_pointcount.txt```
