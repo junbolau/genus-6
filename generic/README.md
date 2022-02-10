@@ -10,3 +10,4 @@ Under ```results/...```, there are 38 supersingular curves of genus 6 in the gen
 
 Remarks:
 - For curves with #C(F_2) =  1 or 3, we can do point counts up to F_64.
+- For curves with #C(F_2) = 5, I split the ```.txt``` file into two and combined them after the F_16 calculations.
