@@ -1,0 +1,1 @@
+- By Howe-Lauter "New methods for bounding the number of points on curves over finite fields" Lemma 6.1, there are no supersingular curves over the 5 elliptic curves defined over F_2.
