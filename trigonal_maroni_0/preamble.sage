@@ -9,8 +9,8 @@ from collections import defaultdict
 
 load("orbits.sage") # Group orbits
 load("linalg.sage") # Auxiliary linear algebra
-#load("../Shared/cyclic_covers.sage") # Cyclic covers of function fields
-#load("../Shared/weil_poly_utils.sage") # Utility functions for Weil polynomials
+load("../Shared/cyclic_covers.sage") # Cyclic covers of function fields
+load("../Shared/weil_poly_utils.sage") # Utility functions for Weil polynomials
 load("ss_pointcount.sage") ##supersingular curves point counts
 
         
@@ -27,7 +27,7 @@ def report_time():
         print("Total time: {} minutes".format(minutes))
 
 
-def closeout(curves=None, genus=None):
+def closeout(curves=None,X = None, genus=None):
     if not curves:
         print("No curves found in this case!")
         report_time()
@@ -35,15 +35,13 @@ def closeout(curves=None, genus=None):
     # Pick out cases with matching point counts.
     l = []
     Q.<T> = QQ[]
-    failure = []
+#    failure = []
 
     for s in curves:
-        print(s)
         for gens in curves[s]:
             try:
-                X = magma.ProjectiveSpace(P)
                 Y = X.Scheme(gens)
-                if Y.Dimension() > 1 or str(Y.IsIrreducible()) == "false" or str(Y.IsReduced()) == "false":
+                if Y.Dimension() > 1 or Y.IsIrreducible() == False or Y.IsReduced() == False:
                     continue
                 C = Y.Curve()
                 F0 = C.FunctionField()
@@ -56,11 +54,12 @@ def closeout(curves=None, genus=None):
                 if ct in pointcount:
                     l.append(F)
             except:
-                failure.append((s,gens))
+                continue
+#                failure.append((s,gens))
                 
     print("Number of curves found: {}".format(len(l)))
     # Identify distinct isomorphism classes.
     l2 = isomorphism_class_reps(l)
     print("Number of isomorphism classes found: {}".format(len(l2)))
     report_time()
-    return l2,failure
+    return l2 #,failure

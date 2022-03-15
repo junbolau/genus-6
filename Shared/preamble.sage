@@ -7,11 +7,11 @@ from collections import defaultdict
 
 # Load other Sage files
 
-load("orbits.sage") # Group orbits
-load("linalg.sage") # Auxiliary linear algebra
-#load("../Shared/cyclic_covers.sage") # Cyclic covers of function fields
-#load("../Shared/weil_poly_utils.sage") # Utility functions for Weil polynomials
-load("ss_pointcount.sage") ##supersingular curves point counts
+load("../Shared/orbits.sage") # Group orbits
+load("../Shared/linalg.sage") # Auxiliary linear algebra
+load("../Shared/cyclic_covers.sage") # Cyclic covers of function fields
+load("../Shared/weil_poly_utils.sage") # Utility functions for Weil polynomials
+load("../Shared/ss_pointcount.sage") ##supersingular curves point counts
 
         
 # Record the current time.
