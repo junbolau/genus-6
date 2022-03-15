@@ -1,3 +1,3 @@
-Similar calculations following Kedlaya's codes,
+Calculations similar to Kedlaya's codes,
 
 - No supersingular quintic curves of genus 6
