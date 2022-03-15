@@ -5,4 +5,4 @@
 - ```weil_polynomials_ss_g6.sage``` LMFDB data of genus 6 supersingular curves
 
 
-In ```ss_hyperelliptic.ipynb```, there are 8 supersingular hyperelliptic curves of genus 6.
+In ```ss_hyperelliptic.ipynb``` and ```ss_hyp.txt```, there are 8 supersingular hyperelliptic curves of genus 6.
