@@ -5,7 +5,7 @@ This folder contains files used for the computation of supersingular generic cur
 3. ```sspointcounts_F16.sage```: Compute up to F_16 points from the previous list and compare with supersingular point counts
 4. ```closeout.sage```: Close out computation by computing the remaining isomorphism classes (uses MAGMA)
 
-Under ```results/...```, there are 38 supersingular curves of genus 6 in the generic case.
+Under ```results/...```, there are 38 supersingular curves of genus 6 in the generic case. ```ss_generic.txt``` contains the supersingular generic curves.
 
 
 Remarks:
