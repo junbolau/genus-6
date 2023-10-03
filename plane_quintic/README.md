@@ -9,5 +9,5 @@ The file is broken into 3 steps: data generation, curve check and isomorphism cl
 ## Comments:
 - The list of isomorphism classes is contained in ```/data/sorted/plane_quintic.txt```, the elements are presented as a list of support vectors indexed lexicographically by ```monos5``` in the notebook ```data_generation```.
 - breaking down the list of equations into 25 files allow parallelising the curve and isomorphism class checks. The commands are contained within the Magma files.
-- Takes less than 2 hours when broken down into 25 parallel Magma jobs. Optimisations possible.
+- Takes around 2 hours when broken down into 25 parallel Magma jobs. Optimisations possible.
 - Can break down into batches in a smarter way depending on bin sizes.
