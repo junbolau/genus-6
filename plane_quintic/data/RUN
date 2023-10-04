@@ -1,0 +1,26 @@
+#!/bin/sh
+magma -b InputFileName:=with_genus_unfiltered_12.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_2.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_5.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_1.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_9.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_13.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_17.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_11.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_0.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_3.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_7.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_10.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_14.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_20.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_6.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_21.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_23.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_16.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_18.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_15.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_19.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_4.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_8.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_22.txt ../isom_class_check.m &
+magma -b InputFileName:=with_genus_unfiltered_24.txt ../isom_class_check.m &

@@ -45,7 +45,7 @@ def cyclic_covers(F, d, delta=0, q=2):
     z = F.DivisorGroup().Identity()
     if delta == 0:
         m = [z]
-    elif delta == 1 and d == 2 and q%2 == 0: #Wild ramification
+    elif delta == 1 and d == 2 and q%2 == 0: #Wild ramification	
         m = [z+2*i for i in places1]
     elif delta == 2 and (q%2 == 0 and d == 3) or (q%2 != 0 and d == 2): #Tame ramification
         m = [z+i+j for (i,j) in itertools.combinations_with_replacement(places1, 2)] + \
