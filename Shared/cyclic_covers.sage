@@ -78,7 +78,7 @@ def isomorphism_class_reps(l, genus=None):
     d = defaultdict(list)
     # Hash by point counts.
     for F in l:
-        #g = Integer(F.Genus())
+        g = Integer(F.Genus())
         g = genus if genus else Integer(F.Genus())
         t = tuple(Integer(F.NumberOfPlacesOfDegreeOneECF(i)) for i in range(1, g+1))
         d[t].append(F)
