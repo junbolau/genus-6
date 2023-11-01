@@ -1,4 +1,4 @@
-This folder contains calculations of supersingular curves over genus 6
+This folder contains calculations of supersingular curves of genus 6 over F_2. 
 
 Number of supersingular curves:
 - bielliptic: 0

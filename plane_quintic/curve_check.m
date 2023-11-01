@@ -2,7 +2,7 @@
 
   Use this script to generate curves data with correct genus:
 
-    ls ./data/ | parallel -j25 "magma -b InputFileName:={} curve_check.m"
+    ls ./data/ | parallel -j25 "magma -b InputFileName:={} curve_check.m &"
 
   (current) If parallel does not work, run this script within /data/ directory :
   
