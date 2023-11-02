@@ -1,4 +1,4 @@
-/*curve_check.m
+/*curve_check.m (for genus 6 curves that are trigonal of maroni invariant 0)
 
   Use this script to generate curves data with correct genus:
 

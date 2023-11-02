@@ -90,6 +90,7 @@ tree = build_orbit_tree(G0, S, _sage_const_10 , methods, verbose=False)
 
 monos13 = [prod(x) for x in itertools.product([prod(y) for y in itertools.combinations_with_replacement([x0,x1],_sage_const_1 )],
                                               [prod(y) for y in itertools.combinations_with_replacement([y0,y1,y2],_sage_const_3 )])]
+print(monos13)
 
 coords13 = {x: vector(F, (mu(*x[_sage_const_0 ], *x[_sage_const_1 ]) for mu in monos13)) for x in S}
 
@@ -128,7 +129,7 @@ for s in range(_sage_const_0 ,_sage_const_11 ):
 
 lst = list(curves.keys())
 for j in range(_sage_const_28 ):
-    FILE_NAME = f'maroni_type0_unfiltered_batch_{j}' + '.txt'
+    FILE_NAME = f'maroni_type2_unfiltered_batch_{j}' + '.txt'
     with open(FILE_NAME, 'w') as f:
         if j == _sage_const_27 :
             for key in lst[_sage_const_66 *j:]:
