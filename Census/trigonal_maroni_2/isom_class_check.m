@@ -1,8 +1,8 @@
-/*isom_class_check.m (for genus 6 curves that are trigonal of maroni invariant 0)
+/*isom_class_check.m (for genus 6 curves that are trigonal of maroni invariant 2)
 
   Use this script to generate isomorphism class of curves data:
 
-    ls ./data_filtered/ | parallel -j28 "magma -b InputFileName:={} isom_class_check.m &"
+    ls ./data_filtered/ | parallel -j28 "magma -b InputFileName:={} isom_class_check.m"
     
 */
 
@@ -27,39 +27,39 @@ end function;
 
 L := LineCount(InputFileName);
 
-R<x0,x1,y0,y1> := PolynomialRing(GF(2),4);
+R<x0,x1,y0,y1,y2> := PolynomialRing(GF(2),5);
 I1 := ideal<R|[x0,x1]>;
-I2 := ideal<R|[y0,y1]>;
-CR := CoxRing(R, [I1, I2], [[1,1,0,0],[0,0,1,1]], []);
+I2 := ideal<R|[y0,y1,y2]>;
+CR := CoxRing(R, [I1, I2], [[1,1,0,0,0],[0,0,1,1,1]], []);
 X := ToricVariety(CR);
-monos34 := [x0^3*y0^4,
- x0^3*y0^3*y1,
- x0^3*y0^2*y1^2,
- x0^3*y0*y1^3,
- x0^3*y1^4,
- x0^2*x1*y0^4,
- x0^2*x1*y0^3*y1,
- x0^2*x1*y0^2*y1^2,
- x0^2*x1*y0*y1^3,
- x0^2*x1*y1^4,
- x0*x1^2*y0^4,
- x0*x1^2*y0^3*y1,
- x0*x1^2*y0^2*y1^2,
- x0*x1^2*y0*y1^3,
- x0*x1^2*y1^4,
- x1^3*y0^4,
- x1^3*y0^3*y1,
- x1^3*y0^2*y1^2,
- x1^3*y0*y1^3,
- x1^3*y1^4];
+monos13 := [x0*y0^3, 
+x0*y0^2*y1, 
+x0*y0^2*y2, 
+x0*y0*y1^2, 
+x0*y0*y1*y2, 
+x0*y0*y2^2, 
+x0*y1^3, 
+x0*y1^2*y2, 
+x0*y1*y2^2, 
+x0*y2^3, 
+x1*y0^3, 
+x1*y0^2*y1, 
+x1*y0^2*y2, 
+x1*y0*y1^2, 
+x1*y0*y1*y2, 
+x1*y0*y2^2, 
+x1*y1^3, 
+x1*y1^2*y2, 
+x1*y1*y2^2, 
+x1*y2^3];
 
 // Quick construction of function field with IsIsomorphic functionality
 function FFConstruction(fsupp)
     pol := R!0;
     for k in fsupp do
-        pol +:= monos34[k+1];
+        pol +:= monos13[k+1];
         end for;
-    Y_ := Scheme(X,pol);
+    Y_ := Scheme(X,[pol, x0^2*y0 + x0*x1*y1 + x1^2*y2]);
     C_ := Curve(Y_);
     F_ := FunctionField(C_);
     return AlgorithmicFunctionField(F_);
