@@ -85,7 +85,6 @@ tree = build_orbit_tree(G0, S, 10, methods, verbose=False)
 
 monos13 = [prod(x) for x in itertools.product([prod(y) for y in itertools.combinations_with_replacement([x0,x1],1)],
                                               [prod(y) for y in itertools.combinations_with_replacement([y0,y1,y2],3)])]
-print(monos13)
 
 coords13 = {x: vector(F, (mu(*x[0], *x[1]) for mu in monos13)) for x in S}
 
