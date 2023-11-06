@@ -2,7 +2,7 @@
 
   Use this script to generate isomorphism class of curves data:
 
-    ls ./data_filtered/ | parallel -j28 "magma -b InputFileName:={} isom_class_check.m"
+    ls ./data_filtered/ | parallel -j28 "magma -b InputFileName:={} isom_class_check.m &"
     
 */
 
