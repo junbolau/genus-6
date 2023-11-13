@@ -62,5 +62,9 @@ for mats in green_nodes(tree, 4):
 Gamma = Graph(edges, loops=True)
 l = [cc[0] for cc in Gamma.connected_components(sort=False)]
 
-with open("genus6-flats.txt", "w") as f:
-    f.write(str(l))
+i = 0
+for ele in l:
+    FILE_NAME = f'./flats/genus6_flat_{i}' + '.txt'
+    with open(FILE_NAME, "w") as f:
+        f.write(str(ele))
+    i += 1
