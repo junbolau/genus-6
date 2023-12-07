@@ -2,13 +2,13 @@
 
   Use this script to generate isomorphism class of curves data:
 
-    ls ./data_filtered/ | parallel -j28 "magma -b InputFileName:={} isom_class_check.m &"
+    ls ./data_filtered_updated/ | parallel -j28 "magma -b InputFileName:={} isom_class_check.m &"
     
 */
 
 
 OutputFileName := "./sorted_data/isomclass_" cat InputFileName;
-InputFileName := "./data_filtered/" cat InputFileName;
+InputFileName := "./data_filtered_updated/" cat InputFileName;
 LinesOfInputFile := Split(Read(InputFileName), "\n");
 
 // Count number of lines in text file
@@ -102,7 +102,8 @@ while i le L do
         end if;
     end for;
     for eqn in supptmp do
-        fprintf OutputFileName, "%o" cat "\n", eqn;
+        print(eqn);
+        fprintf OutputFileName, "%o" cat "," cat "%o" cat "\n", eqn, #AutomorphismGroup(FFConstruction(eqn));
     end for;
     i := j + 1;
 end while;

@@ -1,8 +1,9 @@
 /* curve_check.m (for generic genus 6 curves over F_2)
+ls ./flats/unfiltered/ | parallel -j50 "magma -b Input:={} curve_check.m"
 */
 
-OutputFileName := "./data_unfiltered/with_genus_" cat Input;
-InputFileName := "./flats/unfiltered/" cat Input;
+OutputFileName := "./data_unfiltered/flat32/with_genus_" cat Input;
+InputFileName := "./flats/unfiltered/flat32/" cat Input;
 
 LinesOfInputFile := Split(Read(InputFileName), "\n");
 
@@ -45,7 +46,6 @@ GenusCheck := function(_fsupp)
         C := Curve(Y);
         F0 := FunctionField(C);
         F := AlgorithmicFunctionField(F0);
-        print(F);
         if Genus(F) eq 6 then 
             ct := "[";
             for n in [1..6] do
@@ -71,7 +71,8 @@ for MyLine in LinesOfInputFile do
             fprintf OutputFileName, to_print;
         end if;
     else
-        fprintf OutputFileName, MyLine;
+        to_print := MyLine cat "\n";
+        fprintf OutputFileName, to_print;
     end if;
     n +:= 1;
 end for;
