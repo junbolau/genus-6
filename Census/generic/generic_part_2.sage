@@ -63,12 +63,12 @@ assert all(gen(*coords[M]) == 0 for M in coords for gen in quads)
 load("weil_poly_dim6.sage")
 load("weil_poly_utils.sage")
 
-pointcounts = []
-for pol in data: # data comes from weil_poly_dim6.sage 
-    pointcounts.append(tuple(point_count_from_weil_poly(pol.reverse(),4,q=2)))
+#pointcounts = []
+#for pol in data: # data comes from weil_poly_dim6.sage 
+#    pointcounts.append(tuple(point_count_from_weil_poly(pol.reverse(),4,q=2)))
     
-with open("pointcounts.sage", "w") as f:
-    f.write( "data = " +str(pointcounts))
+#with open("pointcounts.sage", "w") as f:
+#    f.write( "data = " +str(pointcounts))
 
 load("pointcounts.sage")
 
@@ -90,15 +90,15 @@ for W in VectorSpace(F4, 5).subspaces(2):
     S4.append(v)
 
 # Enforce point counts over F_{2^i} for i=3,4 by commutative algebra 
-def count_by_ideal(gens, n):
-    J = P.ideal(gens + quads + tuple(y^(2^n) + y for y in P.gens()))
-    return (J.vector_space_dimension() - 1) // (2^n-1)
+#def count_by_ideal(gens, n):
+#    J = P.ideal(gens + quads + tuple(y^(2^n) + y for y in P.gens()))
+#    return (J.vector_space_dimension() - 1) // (2^n-1)
 
 tmp2 = set(t[:2] for t in data)
-tmp3 = set(t[:3] for t in data)
-tmp4 = set(t[:4] for t in data)
+#tmp3 = set(t[:3] for t in data)
+#tmp4 = set(t[:4] for t in data)
 
-curves = defaultdict(list)
+#curves = defaultdict(list)
 P_gens_new = [P_gens[i] for i in non_pivots]
 monos2 = [prod(x) for x in itertools.combinations_with_replacement(P_gens_new, 2)]
 quadrics = [sum(combo) for r in range(1,len(monos2) + 1) for combo in itertools.combinations(monos2, r)]
@@ -106,23 +106,36 @@ quadrics = [sum(combo) for r in range(1,len(monos2) + 1) for combo in itertools.
 pts = [coords[x] for x in S if coords[x] in V] # points in the intersection of the flat with Gr(2,5)
 pts2 = [x for x in S4 if all(gen(*x) == 0 for gen in gens)]
 
-for quadric in quadrics:
-    s1 = sum(1 for x in pts if quadric(*x) ==0)
-    if s1 <= 10:
-        s2 = sum(1 for x in pts2 if quadric(*x) == 0)
-        if (s1, s2) in tmp2:
-            generators = gens+(quadric,)
-            s3 = count_by_ideal(generators, 3)
-            s = (s1, s2) + (s3,)
-            if s in tmp3:
-                s4 = count_by_ideal(generators, 4)
-                s = s + (s4,)
-                if s in tmp4:
-                    curves[s].append(quadric)
 
-print(len(curves))
-print([(key, len(curves[key])) for key in curves])
+FILE_NAME_new = './flats/unfiltered/'+ FILE_NAME.replace('.txt', '').replace('./flats/','') \
+    + f'_unfiltered' + '.txt'
+with open(FILE_NAME_new, 'w') as f:
+    f.write(str(flat))
+    f.write('\n')
+    for quadric in quadrics:
+        #s1 = sum(1 for x in pts if quadric(*x) ==0)
+        #if s1 <= 10:
+        #    s2 = sum(1 for x in pts2 if quadric(*x) == 0)
+        #    if (s1, s2) in tmp2:
+                #generators = gens+(quadric,)
+                #s3 = count_by_ideal(generators, 3)
+                #s = (s1, s2) + (s3,)
+                #if s in tmp3:
+                #    s4 = count_by_ideal(generators, 4)
+                #    s = s + (s4,)
+                #    if s in tmp4:
+        tmp = []
+        for ele in quadric:
+            tmp.append(P_monos2.index(ele[1]))
+        f.write(str(tmp))
+        f.write('\n')
+                        #curves[s].append(quadric)
+    f.write('task completed')
 
+#print(len(curves))
+#print([(key, len(curves[key])) for key in curves])
+
+"""
 k = 0
 for key in curves:
     FILE_NAME_new = './flats/unfiltered/'+ FILE_NAME.replace('.txt', '').replace('./flats/','') \
@@ -137,4 +150,4 @@ for key in curves:
             f.write(str(tmp))
             f.write('\n')
     k += 1
-
+"""
