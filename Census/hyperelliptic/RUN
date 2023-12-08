@@ -1,0 +1,2 @@
+#!/bin/sh
+magma -b InputFileName:=hyperelliptic.txt pc_check.m &
