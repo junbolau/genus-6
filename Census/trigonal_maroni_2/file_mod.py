@@ -1,5 +1,5 @@
 # Run this in parallel using this command:
-# ls ./data_unfiltered/ | parallel -j50 "python3 file_mod.py {}"
+# ls ./data_filtered/ | parallel -j50 "python3 file_mod.py {}"
 
 import sys
 import ast

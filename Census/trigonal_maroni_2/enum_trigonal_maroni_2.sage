@@ -14,7 +14,7 @@ load('preamble.sage')
 
 F = GF(2)
 P.<x0,x1,y0,y1,y2> = PolynomialRing(F, 5, order='lex')
-gen1 = x0^2*y0 + x0*x1*y1 + x1^2*y2
+gen1 = (x0^2+x1^2)*y1 + x0*x1*y2
 
 S1 = [vector(t) for t in ProjectiveSpace(F, 1)]
 S2 = [vector(t) for t in ProjectiveSpace(F, 2)]
@@ -48,9 +48,11 @@ S016 = list(itertools.product(S116, S216))
 S16 = [x for x in S016 if gen1(*x[0], *x[1]) == 0]
 
 # Construct a subgroup G0 of GL(2, F_2) X GL(3, F_2) fixing X_1
-l0 = [Matrix(F,[[1,1,0,0,0],[0,1,0,0,0],[0,0,1,0,0],[0,0,0,1,0],[0,0,1,1,1]]),
-      Matrix(F,[[0,1,0,0,0],[1,0,0,0,0],[0,0,0,0,1],[0,0,0,1,0],[0,0,1,0,0]])]
+l0 = [Matrix(F,[[0,1,0,0,0],[1,0,0,0,0],[0,0,1,0,0],[0,0,0,1,0],[0,0,0,0,1]]),
+      Matrix(F,[[0,1,0,0,0],[1,0,0,0,0],[0,0,1,1,0],[0,0,0,1,0],[0,0,0,0,1]]),
+      Matrix(F,[[0,1,0,0,0],[1,0,0,0,0],[0,0,1,0,1],[0,0,0,1,0],[0,0,0,0,1]])]
 G0 = GL(5,F).subgroup(l0)
+print(G0.order())
 
 # Use an orbit lookup tree to find G0-orbit representatives for 6-tuples of F_2-points in X_1
 def apply_group_elem(g, x):
@@ -122,7 +124,7 @@ for s in range(0,11):
                         curves[(s,s2,s3,s4)].append((gen1, gen2))
 
 lst = list(curves.keys())
-for j in range(28):
+for j in range(23):
     FILE_NAME = f'maroni_type2_unfiltered_batch_{j}' + '.txt'
     with open(FILE_NAME, 'w') as f:
         if j == 27:

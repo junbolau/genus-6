@@ -20,7 +20,7 @@ load('preamble.sage')
 
 F = GF(_sage_const_2 )
 P = PolynomialRing(F, _sage_const_5 , order='lex', names=('x0', 'x1', 'y0', 'y1', 'y2',)); (x0, x1, y0, y1, y2,) = P._first_ngens(5)
-gen1 = x0**_sage_const_2 *y0 + x0*x1*y1 + x1**_sage_const_2 *y2
+gen1 = (x0**_sage_const_2 +x1**_sage_const_2 )*y1 + x0*x1*y2
 
 S1 = [vector(t) for t in ProjectiveSpace(F, _sage_const_1 )]
 S2 = [vector(t) for t in ProjectiveSpace(F, _sage_const_2 )]
@@ -54,9 +54,11 @@ S016 = list(itertools.product(S116, S216))
 S16 = [x for x in S016 if gen1(*x[_sage_const_0 ], *x[_sage_const_1 ]) == _sage_const_0 ]
 
 # Construct a subgroup G0 of GL(2, F_2) X GL(3, F_2) fixing X_1
-l0 = [Matrix(F,[[_sage_const_1 ,_sage_const_1 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_1 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_1 ,_sage_const_0 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_1 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_1 ,_sage_const_1 ,_sage_const_1 ]]),
-      Matrix(F,[[_sage_const_0 ,_sage_const_1 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ],[_sage_const_1 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_1 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_1 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_1 ,_sage_const_0 ,_sage_const_0 ]])]
+l0 = [Matrix(F,[[_sage_const_0 ,_sage_const_1 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ],[_sage_const_1 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_1 ,_sage_const_0 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_1 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_1 ]]),
+      Matrix(F,[[_sage_const_0 ,_sage_const_1 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ],[_sage_const_1 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_1 ,_sage_const_1 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_1 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_1 ]]),
+      Matrix(F,[[_sage_const_0 ,_sage_const_1 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ],[_sage_const_1 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_1 ,_sage_const_0 ,_sage_const_1 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_1 ,_sage_const_0 ],[_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_0 ,_sage_const_1 ]])]
 G0 = GL(_sage_const_5 ,F).subgroup(l0)
+print(G0.order())
 
 # Use an orbit lookup tree to find G0-orbit representatives for 6-tuples of F_2-points in X_1
 def apply_group_elem(g, x):
@@ -90,7 +92,6 @@ tree = build_orbit_tree(G0, S, _sage_const_10 , methods, verbose=False)
 
 monos13 = [prod(x) for x in itertools.product([prod(y) for y in itertools.combinations_with_replacement([x0,x1],_sage_const_1 )],
                                               [prod(y) for y in itertools.combinations_with_replacement([y0,y1,y2],_sage_const_3 )])]
-print(monos13)
 
 coords13 = {x: vector(F, (mu(*x[_sage_const_0 ], *x[_sage_const_1 ]) for mu in monos13)) for x in S}
 

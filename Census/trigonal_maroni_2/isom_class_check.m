@@ -2,7 +2,7 @@
 
   Use this script to generate isomorphism class of curves data:
 
-    ls ./data_filtered/ | parallel -j28 "magma -b InputFileName:={} isom_class_check.m &"
+    ls ./data_filtered_updated/ | parallel -j23 "magma -b InputFileName:={} isom_class_check.m &"
     
 */
 
@@ -59,7 +59,7 @@ function FFConstruction(fsupp)
     for k in fsupp do
         pol +:= monos13[k+1];
         end for;
-    Y_ := Scheme(X,[pol, x0^2*y0 + x0*x1*y1 + x1^2*y2]);
+    Y_ := Scheme(X,[pol, (x0^2+x1^2)*y1 + x0*x1*y2]);
     C_ := Curve(Y_);
     F_ := FunctionField(C_);
     return AlgorithmicFunctionField(F_);
@@ -79,6 +79,29 @@ function CountIndices(TxtFile, InitialPointCounts,StartingIndex)
     return L;
 end function;
 
+function CountAutoms(F)
+    try
+        return #AutomorphismGroup(F);
+    catch e
+        /* An error can occur when Automorphisms(F) returns a list with repetitions. */
+        L := Automorphisms(F);
+        L1 := [* *];
+        for i in L do
+            match := false;
+            for j in L1 do
+                if Equality(i, j) then
+                    match := true;
+                    break;
+                end if;
+            end for;
+            if not match then
+                Append(~L1, i);
+            end if;
+        end for;
+        return #L1;
+    end try;
+end function;
+
 // Main loop: check for pairwise isomorphism by varying over elements of the same point counts
 lst := eval(LinesOfInputFile[1]);
 final := [lst[2]];
@@ -96,13 +119,21 @@ while i le L do
         lst2 := eval(LinesOfInputFile[ind]);
         supp2 := lst2[2];
         F02 := FFConstruction(supp2);
-        if forall(u){m : m in tmp | IsIsomorphic(F02,m) eq false } eq true then
+        if forall(u){m : m in tmp | #Isomorphisms(F02,m) eq 0} eq true then
             Append(~tmp,F02);
             Append(~supptmp,supp2);
         end if;
     end for;
     for eqn in supptmp do
-        fprintf OutputFileName, "%o" cat "," cat "%o" cat "\n", eqn, #AutomorphismGroup(FFConstruction(eqn));
+        try 
+            aut_ord := #AutomorphismGroup(FFConstruction(eqn));
+            fprintf OutputFileName, "%o" cat "," cat "%o" cat "\n", eqn, aut_ord;
+        catch e
+            fprintf "problematic_automorphisms.txt", "%o" cat "\n", eqn;
+            aut_ord := CountAutoms(FFConstruction(eqn));
+            fprintf OutputFileName, "%o" cat "," cat "%o" cat "\n", eqn, aut_ord;
+            //fprintf OutputFileName, "%o" cat "," cat "%o" cat ",'error'" cat "\n", eqn, 1;
+        end try;
     end for;
     i := j + 1;
 end while;
