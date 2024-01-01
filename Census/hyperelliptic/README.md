@@ -5,4 +5,4 @@ This folder contains files used for the calculation for F_2-isomorphism classes 
 - ```pc_check.m``` computes point counts for each hyperelliptic curve
 - ```pre_isom.ipynb``` sorts the curves into point counts
 - ```isom_check.m``` computes isomorphism classes
-- ```sorted``` contain raw files (see ```data_generation, curve_check, isom_class_check```)
+- ```sorted``` contain raw files (see ```hyperelliptic, pc_check, pre_isom,isom_check```)
