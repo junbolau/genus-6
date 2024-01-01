@@ -3,8 +3,8 @@ Use this command to run this script in parallel:
     ls ./data_unfiltered_updated/ | parallel -j50 "magma -b Input:={} isom_class_check.m&"
 */
 
-OutputFileName := "./sorted_data/flat0/isom_class" cat Input;
-InputFileName := "./data_unfiltered_updated/flat0/" cat Input;
+OutputFileName := "./sorted_data/flat22/isom_class" cat Input;
+InputFileName := "./data_unfiltered_updated/flat22/" cat Input;
 
 LinesOfInputFile := Split(Read(InputFileName), "\n");
 
@@ -78,6 +78,29 @@ function CountIndices(TxtFile, InitialPointCounts,StartingIndex)
     return L;
 end function;
 
+function CountAutoms(F)
+    try
+        return #AutomorphismGroup(F);
+    catch e
+        /* An error can occur when Automorphisms(F) returns a list with repetitions. */
+        L := Automorphisms(F);
+        L1 := [* *];
+        for i in L do
+            match := false;
+            for j in L1 do
+                if Equality(i, j) then
+                    match := true;
+                    break;
+                end if;
+            end for;
+            if not match then
+                Append(~L1, i);
+            end if;
+        end for;
+        return #L1;
+    end try;
+end function;
+
 // Main loop: check for pairwise isomorphism by varying over elements of the same point counts
 i := 2;
 while i le L do
@@ -99,7 +122,15 @@ while i le L do
         end if;
     end for;
     for eqn in supptmp do
-        fprintf OutputFileName, "%o" cat "," cat "%o" cat "\n", eqn, #AutomorphismGroup(FFConstruction(eqn));
+        try 
+            aut_ord := #AutomorphismGroup(FFConstruction(eqn));
+            fprintf OutputFileName, "%o" cat "," cat "%o" cat "\n", eqn, aut_ord;
+        catch e
+            fprintf "./sorted_data/flat22/problematic_automorphisms.txt", "%o" cat "\n", eqn;
+            aut_ord := CountAutoms(FFConstruction(eqn));
+            fprintf OutputFileName, "%o" cat "," cat "%o" cat "\n", eqn, aut_ord;
+            //fprintf OutputFileName, "%o" cat "," cat "%o" cat ",'error'" cat "\n", eqn, 1;
+        end try;
     end for;
     i := j + 1;
 end while;

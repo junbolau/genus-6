@@ -2,7 +2,7 @@
 
   Use this script to generate curves data with correct genus:
 
-    ls ./data_unfiltered/ | parallel -j28 "magma -b InputFileName:={} curve_check.m &"
+    ls ./data_unfiltered/ | parallel -j23 "magma -b InputFileName:={} curve_check.m &"
 */
 
 OutputFileName := "./data_filtered/with_genus_" cat InputFileName;
@@ -43,7 +43,7 @@ GenusCheck := function(_fsupp)
         pol +:= monos13[i+1];
     end for;
     
-    Y := Scheme(X,[pol, x0^2*y0 + x0*x1*y1 + x1^2*y2]);
+    Y := Scheme(X,[pol, (x0^2+x1^2)*y1 + x0*x1*y2]);
 
     if Dimension(Y) eq 1 and IsIrreducible(Y) eq true and IsReduced(Y) eq true then
         print(Y);
