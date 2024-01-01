@@ -8,10 +8,19 @@ sys.path.append(parent)
 load_attach_path(parent)
 
 load('preamble.sage')
+load('orbits.sage')
+load('linalg.sage')
+load('cyclic_covers.sage')
+load('weil_poly_utils.sage')
+
+#load("../Shared/orbits.sage") # Group orbits
+#load("../Shared/linalg.sage") # Auxiliary linear algebra
+#load("../Shared/cyclic_covers.sage") # Cyclic covers of function fields
+#load("../Shared/weil_poly_utils.sage") # Utility functions for Weil polynomials
 
 # Construct the set of F_2-rational points of P_1 \times P_1
 F = GF(2)
-P.<x0,x1,y0,y1> = PolynomialRing(F, 4)
+P.<x0,x1,y0,y1> = PolynomialRing(F, 4, order='lex')
 
 S1 = [vector(t) for t in ProjectiveSpace(F,1)]
 for v in S1:
@@ -61,23 +70,78 @@ def vec_to_gen(vec):
 
 curves = defaultdict(list)
 perp = Matrix([coords34[x] for x in S])
-for i in range(4, 10):
+for i in range(10):
     for vecs in green_nodes(tree, i):
         target = vector(F, (0 if x in vecs else 1 for x in S))
         for w in solve_right_iterator(perp, target):
             curves[(i,)].append(vec_to_gen(w))
+#print([(s,len(curves[s])) for s in curves])
+
+
+load("weil_poly_dim6.sage")
+load("weil_poly_utils.sage")
+
+pointcounts = []
+for pol in data: # data comes from weil_poly_dim6.sage 
+    pointcounts.append(tuple(point_count_from_weil_poly(pol.reverse(),4,q=2)))
+    
+with open("pointcounts.sage", "w") as f:
+    f.write( "data = " +str(pointcounts))
+
+load("pointcounts.sage")
+
+# enforce the desired point counts over F_{2^i}, i = 2,3,4 using commutative algebra
+def count_by_ideal(gen, n):
+    J = P.ideal([gen] + [y^(2^n) + y for y in P.gens()])
+    return (J.vector_space_dimension() - 2^(2*n+1) + 1) // (2^n-1)^2
+
+for n in range(2, 5): #takes lot of time for > 4
+    tmp = set(t[:n] for t in data)
+    tmp2 = list(curves.keys())
+    for s in tmp2:
+        for gen in curves[s]:
+            i = count_by_ideal(gen, n)
+            s1 = s + (i,)
+            if s1 in tmp:
+                curves[s1].append(gen)
+        del curves[s]
+
+lst = list(curves.keys())
+for j in range(28):
+    FILE_NAME = f'maroni_type0_unfiltered_batch_{j}' + '.txt'
+    with open(FILE_NAME, 'w') as f:
+        if j == 27:
+            for key in lst[66*j:]:
+                for gens in curves[key]:
+                    tmp = []
+                    for i in gens:
+                        tmp.append(monos34.index(i[1]))
+                    f.write(str(tmp))
+                    f.write('\n')
+        else:
+            for key in lst[66*j: 66*j+66]:
+                for gens in curves[key]:
+                    tmp = []
+                    for i in gens:
+                        tmp.append(monos34.index(i[1]))
+                    f.write(str(tmp))
+                    f.write('\n')
+    f.close()
+
+        
+
 
 
 
 # Close out the case
-I1 = P.ideal([x0,x1])
-I2 = P.ideal([y0, y1])
-CR = magma.CoxRing(P, [I1, I2], [[1,1,0,0],[0,0,1,1]], [])
-proj = CR.ToricVariety()
+#I1 = P.ideal([x0,x1])
+#I2 = P.ideal([y0, y1])
+#CR = magma.CoxRing(P, [I1, I2], [[1,1,0,0],[0,0,1,1]], [])
+#proj = CR.ToricVariety()
 
-with open("ss_trigonalmaroni0_1.txt", "w") as f:
-    for i in range(4,10): 
-        print('Handling curves with ', i, 'F_2 points')
-        f.write('curves with ' + str(i) + ' F_2 points')
-        lst = closeout(6, curves[(i,)], X=proj)
-        f.write(str(lst))
+#with open("ss_trigonalmaroni0_1.txt", "w") as f:
+#    for i in range(4,10): 
+#        print('Handling curves with ', i, 'F_2 points')
+#        f.write('curves with ' + str(i) + ' F_2 points')
+#       lst = closeout(6, curves[(i,)], X=proj)
+#        f.write(str(lst))
