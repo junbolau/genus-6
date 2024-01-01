@@ -32,7 +32,7 @@
 */
 
 
-OutputFileName := "isom_" cat InputFileName;
+OutputFileName := "final_" cat InputFileName;
 LinesOfInputFile := Split(Read(InputFileName), "\n");
 
 
@@ -46,48 +46,20 @@ function FFConstruction(fsupp)
     return AlgorithmicFunctionField(FunctionField(Curve(Scheme(X,fsupp))));
 end function;
 
-// Each line is a support ordered by point count, so we need to get starting and ending indices
-function FindIndex(TxtFile, InitialPointCounts,StartingIndex)
-    if StartingIndex eq L then
-        return StartingIndex;
-    end if;
-    for k in [StartingIndex..L] do
-        tmp := eval(TxtFile[k]);
-        if tmp[1] eq InitialPointCounts and k le L-1 then
-            continue;
-        elif tmp[1] eq InitialPointCounts and k eq L then
-            return k;
-        else
-            return k-1;
-        end if;
-    end for;
-end function;
-
 // Main loop: check for pairwise isomorphism by varying over elements of the same point counts
-i := 1;
-while i le L do
-    lst := eval(LinesOfInputFile[i]);
-    ct := lst[1];
-    supp := lst[2];
-    F0 := FFConstruction(supp);
-
-    autsize := #AutomorphismGroup(Curve(Scheme(X,supp)));
-    fprintf OutputFileName, "[" cat "%o" cat "," cat "%o" cat "]" cat "\n", supp[1],autsize;
-
-    tmp := [F0];
-    j := FindIndex(LinesOfInputFile,ct,i);
-    
-    for ind in [i..j] do
-        lst2 := eval(LinesOfInputFile[ind]);
-        supp2 := lst2[2];
-        F02 := FFConstruction(supp2);
-        if forall(u){m : m in tmp | #Isomorphisms(F02,m) eq 0 } eq true then
-            Append(~tmp,F02);
-            autsize := #AutomorphismGroup(Curve(Scheme(X,supp2)));
-            fprintf OutputFileName, "[" cat "%o" cat "," cat "%o" cat "]" cat "\n", supp2[1],autsize;
-        end if;
-    end for;
-    i := j + 1;
-end while;
+lst := eval(LinesOfInputFile[1]);
+supp := lst[1];
+F0 := FFConstruction(supp);
+fprintf OutputFileName, LinesOfInputFile[1] cat "\n";  
+tmp := [F0];
+for ind in [1..L] do
+    lst2 := eval(LinesOfInputFile[ind]);
+    supp2 := lst2[1];
+    F02 := FFConstruction(supp2);
+    if forall(u){m : m in tmp | IsIsomorphic(F02,m) eq false } eq true then
+        Append(~tmp,F02);
+        fprintf OutputFileName, LinesOfInputFile[ind] cat "\n";
+    end if;
+end for;
 
 quit;
