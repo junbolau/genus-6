@@ -29,7 +29,7 @@ def sum_lines_in_directory(directory_path):
         file_path = os.path.join(directory_path, filename)
 
         # Check if the file is a text file
-        if os.path.isfile(file_path) and filename.endswith('.txt'):
+        if os.path.isfile(file_path) and filename.endswith('.txt') and 'problematic' not in filename:
             counts = count_lines_in_file(file_path)
             total_lines[0] += counts[0]
             total_lines[1] += counts[1]
