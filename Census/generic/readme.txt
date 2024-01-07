@@ -18,13 +18,13 @@ We have the following (nonstacky, stacky) count for the number of isomorphism cl
 - flat 0: (2429, 2419)
 - flat 1: (4705, 4682)
 - flat 2: (1923, 1887)
-- flat 3:
-- flat 4:
+- flat 3: (4243, 12713/3)
+- flat 4: (2337, 2306)
 - flat 5:
-- flat 6:
+- flat 6: (1852, 1822.5)
 - flat 8: (5552, 5519.5)
 - flat 9: (5735, 5730.2)
-- flat 10:
+- flat 10: (1022, 2989/3)
 - flat 13:
 - flat 14: (4668,4649)
 - flat 15:
@@ -34,6 +34,6 @@ We have the following (nonstacky, stacky) count for the number of isomorphism cl
 - flat 25:
 - flat 31: (0, 0)
 - flat 32: (0, 0)
-- flat 48: 
+- flat 48: (91, 4223/60)
 
-Total: (25012, 24886.7)
+Total: (34557, 34319.5833)
