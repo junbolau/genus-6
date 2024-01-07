@@ -20,10 +20,12 @@ def count_lines_in_file(file_path):
             tmp = ast.literal_eval(line)
             if 'error' in tmp:
                 error_count += _sage_const_1 
-                magma.load(func_path+'auto_group_check.m')
-                stacky_count += _sage_const_1 /Integer(magma.function_call('count_atoms', tmp[_sage_const_0 ]))
+                #magma.load(func_path+'auto_group_check.m')
+                #//stacky_count += 1/Integer(magma.function_call('count_atoms', tmp[0]))
                 print(tmp, file_path)
             else: 
+                if tmp[_sage_const_1 ] > _sage_const_1 :
+                    print(tmp)
                 stacky_count += _sage_const_1 /Integer(tmp[_sage_const_1 ])
         return [nonstacky_count, stacky_count, error_count]
 
@@ -35,7 +37,7 @@ def sum_lines_in_directory(directory_path):
         file_path = os.path.join(directory_path, filename)
 
         # Check if the file is a text file
-        if os.path.isfile(file_path) and filename.endswith('.txt'):
+        if os.path.isfile(file_path) and filename.endswith('.txt') and 'problematic' not in filename:
             counts = count_lines_in_file(file_path)
             total_lines[_sage_const_0 ] += counts[_sage_const_0 ]
             total_lines[_sage_const_1 ] += counts[_sage_const_1 ]
