@@ -13,3 +13,27 @@ The computation is broken down into the following steps:
 4) generic_part_4.py - Helper Python code that groups together curves in ./data_unfiltered/ with the same point counts over F_{2^i} for i=1,2,3,4,5,6 and stores the regrouped curves in ./data_unfiltered_updated/. 
 
 5) isom_class_check.m: Magma code that computes the distinct isomorphism classes of curves in ./data_unfiltered_updated/ and stores each isomorphism class in ./sorted_data. For each isomorphism class, it also computes the order of its automorphism group over F_2.  
+
+We have the following (nonstacky, stacky) count for the number of isomorphism classes of generic curves of genus 6 over F_2 corresponding to each flat:
+- flat 0: (2429, 2419)
+- flat 1: (4705, 4682)
+- flat 2: (1923, 1887)
+- flat 3:
+- flat 4:
+- flat 5:
+- flat 6:
+- flat 8: (5552, 5519.5)
+- flat 9: (5735, 5730.2)
+- flat 10:
+- flat 13:
+- flat 14: (4668,4649)
+- flat 15:
+- flat 19: (0, 0)
+- flat 22:
+- flat 23: 
+- flat 25:
+- flat 31: (0, 0)
+- flat 32: (0, 0)
+- flat 48: 
+
+Total: (25012, 24886.7)
