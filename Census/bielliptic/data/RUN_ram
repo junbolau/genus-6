@@ -1,0 +1,6 @@
+#!/bin/sh
+magma -b InputFileName:=1.txt ../curves_by_ramification.m &
+magma -b InputFileName:=4.txt ../curves_by_ramification.m &
+magma -b InputFileName:=2.txt ../curves_by_ramification.m &
+magma -b InputFileName:=3.txt ../curves_by_ramification.m &
+magma -b InputFileName:=5.txt ../curves_by_ramification.m &

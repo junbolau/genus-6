@@ -1,0 +1,11 @@
+#!/bin/sh
+magma -b InputFileName:=sorted0.txt ../isom_class_check_ff.m &
+magma -b InputFileName:=sorted3.txt ../isom_class_check_ff.m &
+magma -b InputFileName:=sorted6.txt ../isom_class_check_ff.m &
+magma -b InputFileName:=sorted5.txt ../isom_class_check_ff.m &
+magma -b InputFileName:=sorted9.txt ../isom_class_check_ff.m &
+magma -b InputFileName:=sorted7.txt ../isom_class_check_ff.m &
+magma -b InputFileName:=sorted8.txt ../isom_class_check_ff.m &
+magma -b InputFileName:=sorted4.txt ../isom_class_check_ff.m &
+magma -b InputFileName:=sorted1.txt ../isom_class_check_ff.m &
+magma -b InputFileName:=sorted2.txt ../isom_class_check_ff.m &
