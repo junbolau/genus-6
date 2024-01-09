@@ -6,3 +6,4 @@ This folder contains files used for the calculation for F_2-isomorphism classes 
 - ```pre_isom.ipynb``` sorts the curves into point counts
 - ```isom_check.m``` computes isomorphism classes
 - ```sorted``` contain raw files (see ```hyperelliptic, pc_check, pre_isom,isom_check```)
+- ```M_g_1_pc.m``` contains Magma script to calculate #M_{g,1}(F_2)
