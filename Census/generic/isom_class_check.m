@@ -1,6 +1,6 @@
 /* isom_class_check.m (for generic genus 6 curves over F_2)
 Use this command to run this script in parallel:
-    ls ./data_unfiltered_updated/ | parallel -j50 "magma -b Input:={} isom_class_check.m&"
+    ls ./data_unfiltered_updated/flat22 | parallel -j50 "magma -b Input:={} isom_class_check.m&"
 */
 
 OutputFileName := "./sorted_data/flat22/isom_class" cat Input;

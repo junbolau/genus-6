@@ -32,7 +32,7 @@ l0 = [block_matrix(2,2,[g.matrix(),0,0,identity_matrix(2)], subdivide=False) for
        [block_matrix(2,2,[identity_matrix(2),0,0,g.matrix()], subdivide=False) for g in GL(2,F).gens()]
 G0 = GL(4,F).subgroup(l0)
 
-# Use an orbit lookup tree to find GL(2, F_2)\times GL(2, F_2)-orbit representatives for 6-tuples of F_2 points in P_1\times P_1
+# Use an orbit lookup tree to find GL(2, F_2)\times GL(2, F_2)-orbit representatives for F_2 points in P_1\times P_1
 def apply_group_elem(g, x):
     g1 = g.submatrix(nrows=2,ncols=2)
     g2 = g.submatrix(row=2,col=2)
@@ -57,7 +57,7 @@ methods = {'apply_group_elem': apply_group_elem,
            'optimized_rep': optimized_rep}
 tree = build_orbit_tree(G0, S, 10, methods, verbose=False)
 
-# For each orbit representative of k-tuples with k=0,...,9, find (3,4)-curves passing through precisely those points
+# For each orbit representative of k-tuples with k=0,...,10, find (3,4)-curves passing through precisely those points
 
 monos3 = [prod(x) for x in itertools.combinations_with_replacement([x0,x1],3)]
 monos4 = [prod(x) for x in itertools.combinations_with_replacement([y0,y1],4)]
@@ -70,7 +70,7 @@ def vec_to_gen(vec):
 
 curves = defaultdict(list)
 perp = Matrix([coords34[x] for x in S])
-for i in range(10):
+for i in range(11):
     for vecs in green_nodes(tree, i):
         target = vector(F, (0 if x in vecs else 1 for x in S))
         for w in solve_right_iterator(perp, target):
@@ -108,7 +108,7 @@ for n in range(2, 5): #takes lot of time for > 4
 
 lst = list(curves.keys())
 for j in range(28):
-    FILE_NAME = f'maroni_type0_unfiltered_batch_{j}' + '.txt'
+    FILE_NAME = f'./data_unfiltered/maroni_type0_unfiltered_batch_{j}' + '.txt'
     with open(FILE_NAME, 'w') as f:
         if j == 27:
             for key in lst[66*j:]:
