@@ -1,5 +1,5 @@
 /* curve_check.m (for generic genus 6 curves over F_2)
-ls ./flats/unfiltered/ | parallel -j50 "magma -b Input:={} curve_check.m"
+ls ./flats/unfiltered/flat32/ | parallel -j50 "magma -b Input:={} curve_check.m"
 */
 
 OutputFileName := "./data_unfiltered/flat32/with_genus_" cat Input;

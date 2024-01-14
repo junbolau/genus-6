@@ -15,7 +15,7 @@ The computation is broken down into the following steps:
 5) isom_class_check.m: Magma code that computes the distinct isomorphism classes of curves in ./data_unfiltered_updated/ and stores each isomorphism class in ./sorted_data. For each isomorphism class, it also computes the order of its automorphism group over F_2.  
 
 We have the following (nonstacky, stacky) count for the number of isomorphism classes of generic curves of genus 6 over F_2 corresponding to each flat:
-- flat 0: (2429, 2419)
+- flat 0: (2449, 2439)
 - flat 1: (4705, 4682)
 - flat 2: (1923, 1887)
 - flat 3: (4243, 12713/3)

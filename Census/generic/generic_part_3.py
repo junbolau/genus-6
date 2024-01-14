@@ -10,7 +10,7 @@ def split_and_print(file_path, lines_per_file=10000):
 
 
     for i in range(num_files):
-        output_file_path = f"./flats/unfiltered/flat25/flat25_unfiltered_{i + 1}.txt"
+        output_file_path = f"./flats/unfiltered/flat1/flat1_unfiltered_{i + 1}.txt"
 
         with open(output_file_path, 'w') as output_file:
             # Print the first line of the original file to each new file
@@ -24,5 +24,5 @@ def split_and_print(file_path, lines_per_file=10000):
 
 
 # Replace 'input.txt' with the path to your text file
-file_path = './flats/unfiltered/' + 'genus6_flat_25_unfiltered.txt'
+file_path = './flats/unfiltered/' + 'genus6_flat_1_unfiltered.txt'
 split_and_print(file_path)
