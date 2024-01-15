@@ -7,3 +7,6 @@ This folder contains files used for the calculation for F_2-isomorphism classes 
 - ```functionality.ipynb``` contains cells that sorts curves by point counts, and computing (non)-stacky counts of curves
 - ```data``` contains raw files (see ```data_generation, curve_check, isom_class_check```)
 - ```M_g_1_pc.m``` contains Magma script to calculate #M_{g,1}(F_2)
+
+The (nonstacky,stacky)-counts are:
+- (1530,744)
