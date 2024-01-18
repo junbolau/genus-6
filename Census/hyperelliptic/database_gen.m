@@ -34,19 +34,38 @@ function count_automs(F)
     end try;
 end function;
 
+function AutomorphismGroupCorrected(F)
+    try
+        return AutomorphismGroup(F);
+    catch e
+        /* When this error occurs, Automoprhisms(F) is still assumed to return a list
+           of automorphisms which generates the full groups, but may be incomplete and/or
+           include repetitions. */
+        L := Automorphisms(F);
+        G := FreeGroup(#L);
+        rels := [];
+        for i in [1..#L] do
+            for j in [1..#L] do
+                g := Composition(L[i], L[j]);
+                for k in [1..#L] do
+                    if Equality(g, L[k]) then
+                        Append(~rels, G.i*G.j*G.k^(-1));
+                    end if;
+                end for;
+            end for;
+        end for;
+        return quo<G|rels>;
+    end try;
+end function;
+
 for i in [1..L] do
     tup := eval(LinesOfInputFile[i]);
     supp := tup[1];
     F := FFConstruction(supp);
     cpc := ([NumberOfPlacesOfDegreeOneECF(F,n) : n in [1..6]]);
 
-    try
-        G := IdentifyGroup(AutomorphismGroup(F));
-        fprintf OutputFileName, "[" cat "%o" cat "," cat "'" cat "%o" cat "'" cat "," cat "%o" cat "]" cat "\n", cpc, G, supp;
-    catch e
-        G := count_automs(F);
-        fprintf OutputFileName, "[" cat "%o" cat "," cat "'" cat "%o" cat "'" cat "," cat "%o" cat "]" cat "\n", cpc, G, supp;
-    end try;
+    G := IdentifyGroup(AutomorphismGroupCorrected(F));
+    fprintf OutputFileName, "[" cat "%o" cat "," cat "'" cat "%o" cat "'" cat "," cat "%o" cat "]" cat "\n", cpc, G, supp;
 end for;
 
 print "Done!";
