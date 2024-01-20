@@ -36,4 +36,4 @@ We have the following (nonstacky, stacky) count for the number of isomorphism cl
 - flat 32: (0, 0)
 - flat 48: (91, 4223/60)
 
-Total: (48876, 48393)
+Total: (48896, 48413)
