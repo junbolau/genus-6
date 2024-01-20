@@ -4,7 +4,7 @@ from collections import defaultdict
 load("Shared/weil_poly_utils.sage")
 
 curves = []
-file_keys = ["hyperelliptic", "plane_quintic", "bielliptic", "trigonal_maroni_0", "trigonal_maroni_2"]
+file_keys = ["hyperelliptic", "plane_quintic", "bielliptic", "trigonal_maroni_0", "trigonal_maroni_2", "generic"]
 rx = re.compile(r"\[\[(.*)\],'\<(.*), (.*)\>',(.*)\]\n$")
 for stratum in file_keys:
     with open("Census/{}/data_{}.txt".format(stratum, stratum)) as f:
