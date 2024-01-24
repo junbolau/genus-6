@@ -3,11 +3,9 @@ This folder contains files used for the calculation for F_2-isomorphism classes 
 - ```hyperelliptic.txt``` contains the list of isomorphism classes
 - ```hyperelliptic.ipynb``` contains the calculations for computing orbit representatives of hyperelliptic curves
 - ```pc_check.m``` computes point counts for each hyperelliptic curve
-- ```pre_isom.ipynb``` sorts the curves into point counts
+- ```functions.ipynb``` functions to sort by point counts, compute stacky counts, etc.
 - ```isom_check.m``` computes isomorphism classes
 - ```sorted``` contain raw files (see ```hyperelliptic, pc_check, pre_isom,isom_check```)
-- ```M_g_1_pc.m``` contains Magma script to calculate #M_{g,1}(F_2)
-
 
 The (non-stacky,stacky) counts are:
 
