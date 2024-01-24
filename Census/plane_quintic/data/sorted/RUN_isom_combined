@@ -1,2 +1,0 @@
-#!/bin/sh
-magma -b InputFileName:=combined.txt ../../isom_class_check_combined.m &
