@@ -39,9 +39,11 @@ def point_count_from_place_count(s, n):
     return [sum(s[j-1]*j for j in divisors(i)) for i in range(1,n+1)]
     
 # Given point counts of a curve of a given genus, return its Weil polynomial.
-def weil_poly_from_point_count(l, d, q=2):
+def weil_poly_from_point_count(l, d=None, q=2):
     P.<T> = QQ[]
     Q.<t> = PowerSeriesRing(QQ)
+    if d is None:
+        d = len(l)
     u = sum(l[i-1]*t^i/i for i in range(1,d+1))
     v = exp(u)*(1-t)*(1-q*t)
     l2 = [v[i] for i in range(d+1)]
