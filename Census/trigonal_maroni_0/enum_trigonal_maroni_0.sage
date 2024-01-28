@@ -7,16 +7,9 @@ sys.path.append(parent)
 
 load_attach_path(parent)
 
-load('preamble.sage')
 load('orbits.sage')
 load('linalg.sage')
-load('cyclic_covers.sage')
 load('weil_poly_utils.sage')
-
-#load("../Shared/orbits.sage") # Group orbits
-#load("../Shared/linalg.sage") # Auxiliary linear algebra
-#load("../Shared/cyclic_covers.sage") # Cyclic covers of function fields
-#load("../Shared/weil_poly_utils.sage") # Utility functions for Weil polynomials
 
 # Construct the set of F_2-rational points of P_1 \times P_1
 F = GF(2)
@@ -75,7 +68,6 @@ for i in range(11):
         target = vector(F, (0 if x in vecs else 1 for x in S))
         for w in solve_right_iterator(perp, target):
             curves[(i,)].append(vec_to_gen(w))
-#print([(s,len(curves[s])) for s in curves])
 
 
 load("weil_poly_dim6.sage")
@@ -130,18 +122,3 @@ for j in range(28):
 
         
 
-
-
-
-# Close out the case
-#I1 = P.ideal([x0,x1])
-#I2 = P.ideal([y0, y1])
-#CR = magma.CoxRing(P, [I1, I2], [[1,1,0,0],[0,0,1,1]], [])
-#proj = CR.ToricVariety()
-
-#with open("ss_trigonalmaroni0_1.txt", "w") as f:
-#    for i in range(4,10): 
-#        print('Handling curves with ', i, 'F_2 points')
-#        f.write('curves with ' + str(i) + ' F_2 points')
-#       lst = closeout(6, curves[(i,)], X=proj)
-#        f.write(str(lst))
