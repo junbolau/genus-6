@@ -1,4 +1,3 @@
-# To run this script in parallel: ls ./flats/ | parallel -j57 "sage generic_part_2.sage {}"
 import sys
 import os 
 
@@ -60,45 +59,6 @@ quads = (x01*x23 + x02*x13 + x03*x12,
 
 assert all(gen(*coords[M]) == 0 for M in coords for gen in quads)
 
-load("weil_poly_dim6.sage")
-load("weil_poly_utils.sage")
-
-#pointcounts = []
-#for pol in data: # data comes from weil_poly_dim6.sage 
-#    pointcounts.append(tuple(point_count_from_weil_poly(pol.reverse(),4,q=2)))
-    
-#with open("pointcounts.sage", "w") as f:
-#    f.write( "data = " +str(pointcounts))
-
-load("pointcounts.sage")
-
-
-#def redundancy(gens, F=F, P=P, monos2=monos2, quads=quads):
-#    return [vector(F, ((gen*y).coefficient(mu) for mu in monos2)) for gen in gens for y in P.gens()] + \
-#       [vector(F, (gen.coefficient(mu) for mu in monos2)) for gen in quads]
-
-
-# We also enforce point counts over F_{2^2} using point counts
-F4 = GF(4)
-S4 = []
-for W in VectorSpace(F4, 5).subspaces(2):
-    M = W.matrix()
-    v = vector(M.minors(2))
-    i = min(j for j in range(10) if v[j])
-    assert v[i] == 1
-    v.set_immutable()
-    S4.append(v)
-
-# Enforce point counts over F_{2^i} for i=3,4 by commutative algebra 
-#def count_by_ideal(gens, n):
-#    J = P.ideal(gens + quads + tuple(y^(2^n) + y for y in P.gens()))
-#    return (J.vector_space_dimension() - 1) // (2^n-1)
-
-tmp2 = set(t[:2] for t in data)
-#tmp3 = set(t[:3] for t in data)
-#tmp4 = set(t[:4] for t in data)
-
-#curves = defaultdict(list)
 P_gens_new = [P_gens[i] for i in non_pivots]
 monos2 = [prod(x) for x in itertools.combinations_with_replacement(P_gens_new, 2)]
 quadrics = [sum(combo) for r in range(1,len(monos2) + 1) for combo in itertools.combinations(monos2, r)]
@@ -113,41 +73,9 @@ with open(FILE_NAME_new, 'w') as f:
     f.write(str(flat))
     f.write('\n')
     for quadric in quadrics:
-        #s1 = sum(1 for x in pts if quadric(*x) ==0)
-        #if s1 <= 10:
-        #    s2 = sum(1 for x in pts2 if quadric(*x) == 0)
-        #    if (s1, s2) in tmp2:
-                #generators = gens+(quadric,)
-                #s3 = count_by_ideal(generators, 3)
-                #s = (s1, s2) + (s3,)
-                #if s in tmp3:
-                #    s4 = count_by_ideal(generators, 4)
-                #    s = s + (s4,)
-                #    if s in tmp4:
         tmp = []
         for ele in quadric:
             tmp.append(P_monos2.index(ele[1]))
         f.write(str(tmp))
         f.write('\n')
-                        #curves[s].append(quadric)
     f.write('task completed')
-
-#print(len(curves))
-#print([(key, len(curves[key])) for key in curves])
-
-"""
-k = 0
-for key in curves:
-    FILE_NAME_new = './flats/unfiltered/'+ FILE_NAME.replace('.txt', '').replace('./flats/','') \
-    + f'_unfiltered_{k}' + '.txt'
-    with open(FILE_NAME_new, 'w') as f:
-        f.write(str(flat))
-        f.write('\n')
-        for quadric in curves[key]:
-            tmp = []
-            for ele in quadric:
-                tmp.append(P_monos2.index(ele[1]))
-            f.write(str(tmp))
-            f.write('\n')
-    k += 1
-"""
