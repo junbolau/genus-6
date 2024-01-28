@@ -6,7 +6,7 @@ This repository contains the code (written in SageMath and Magma) and data used 
 
 Below is a quic summary of our census: 
 - There are 72227 isomorphism classes and 38327 isogeny classes of curves of genus 6 over $\mathbb{F}_2$.
-- #$\mathcal{M}_6(\mathbb{F}_2)= 68615$. 
+- # $\mathcal{M}_6(\mathbb{F}_2)= 68615$. 
 
 A complete list of representatives of isomorphism classes of curves in our census can be recovered via ```assemble_data.sage```. For examples of how to query the data in our census, see ```query-data.sage```. 
 Our data is also available via the table of isogeny classes of abelian varieties over finite fields in the [LMFDB](https://www.lmfdb.org). 
