@@ -1,4 +1,4 @@
-## A Census of Curves of Genus 6 over F_2
+## A Census of Curves of Genus 6 over $\mathbb{F}_2$
 ### by Yongyuan Huang, Kiran S. Kedlaya, and Jun Bo Lau
 
 This repository contains the code (written in SageMath and Magma) and data used to build a census of curves of genus 6 over the finite field $\mathbb{F}_2$. This is based primarily on Kedlaya's paper "The relative class number one problem for function fields, III" and its [associated code repository](https://github.com/kedlaya/same-class-number). Some findings:
