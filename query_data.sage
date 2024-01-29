@@ -1,5 +1,5 @@
 load("assemble_data.sage")
-load("weil_poly_utils.sage")
+load("Census/Shared/weil_poly_utils.sage")
 
 # Count distinct zeta functions.
 print("{} distinct zeta functions".format(len(curves_by_zeta)))
