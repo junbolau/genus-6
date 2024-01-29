@@ -28,15 +28,16 @@ def sum_lines_in_directory(directory_path):
     total_lines = [_sage_const_0 , _sage_const_0 , _sage_const_0 ]
 
     # Iterate through all files in the directory
-    for filename in os.listdir(directory_path):
-        file_path = os.path.join(directory_path, filename)
+    for (dirname, _, filenames) in os.walk(directory_path):
+        for filename in filenames:
+            file_path = os.path.join(dirname, filename)
 
         # Check if the file is a text file
-        if os.path.isfile(file_path) and filename.endswith('.txt') and 'problematic' not in filename:
-            counts = count_lines_in_file(file_path)
-            total_lines[_sage_const_0 ] += counts[_sage_const_0 ]
-            total_lines[_sage_const_1 ] += counts[_sage_const_1 ]
-            total_lines[_sage_const_2 ] += counts[_sage_const_2 ]
+            if os.path.isfile(file_path) and filename.endswith('.txt') and 'problematic' not in filename:
+                counts = count_lines_in_file(file_path)
+                total_lines[_sage_const_0 ] += counts[_sage_const_0 ]
+                total_lines[_sage_const_1 ] += counts[_sage_const_1 ]
+                total_lines[_sage_const_2 ] += counts[_sage_const_2 ]
 
     return total_lines
 
