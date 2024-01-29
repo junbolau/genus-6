@@ -1,6 +1,0 @@
-[Algebraic function field defined over Univariate rational function field over GF(2) by
-$.1^4 + ($.1^4 + 1)*$.1^3 + $.1^4*$.1^2 + ($.1^8 + $.1^5 + $.1^4 + $.1)*$.1 + $.1^7 + $.1^4 + $.1^3 + 1, Algebraic function field defined over Univariate rational function field over GF(2) by
-($.1 + 1)*$.1^4 + $.1^4*$.1^3 + $.1^4*$.1 + $.1^7 + 1, Algebraic function field defined over Univariate rational function field over GF(2) by
-$.1^4 + ($.1^3 + $.1)*$.1^3 + $.1^5 + $.1^4 + $.1^3 + $.1^2 + $.1 + 1, Algebraic function field defined over Univariate rational function field over GF(2) by
-($.1^5 + $.1^3 + $.1 + 1)*$.1^4 + $.1^4*$.1^3 + ($.1^8 + $.1^6 + $.1^4)*$.1 + $.1^8 + $.1^7 + $.1^4 + 1, Algebraic function field defined over Univariate rational function field over GF(2) by
-($.1^4 + $.1^3 + $.1 + 1)*$.1^4 + $.1^4*$.1^3 + ($.1^7 + $.1^6 + $.1^4)*$.1 + $.1^7 + $.1^6 + $.1^4 + 1]

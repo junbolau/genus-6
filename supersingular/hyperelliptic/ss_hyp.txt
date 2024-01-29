@@ -1,9 +1,0 @@
-[Algebraic function field defined over Univariate rational function field over GF(2) by
-$.1^2 + $.1 + $.0^14 + $.0^13 + $.0^7 + $.0^6 + $.0^4 + $.0^3 + $.0^2 + $.0, Algebraic function field defined over Univariate rational function field over GF(2) by
-$.1^2 + $.1 + $.0^14 + $.0^13 + $.0^12 + $.0^8 + $.0^7 + $.0^6 + $.0^3 + $.0^2 + 1, Algebraic function field defined over Univariate rational function field over GF(2) by
-$.1^2 + $.1 + $.0^14 + $.0^13 + $.0^12 + $.0^8 + $.0^7 + $.0^6 + $.0^4 + $.0 + 1, Algebraic function field defined over Univariate rational function field over GF(2) by
-$.1^2 + $.1 + $.0^14 + $.0^13 + $.0^12 + $.0^10 + $.0^8 + $.0^7 + $.0^6 + $.0^5 + $.0^4, Algebraic function field defined over Univariate rational function field over GF(2) by
-$.1^2 + $.1 + $.0^14 + $.0^13 + $.0^10 + $.0^9 + $.0^7 + $.0^4 + $.0^3 + $.0^2 + $.0, Algebraic function field defined over Univariate rational function field over GF(2) by
-$.1^2 + $.1 + $.0^13 + $.0^12 + $.0^10 + $.0^8 + $.0^6 + $.0^5 + $.0^4 + $.0^3 + $.0^2, Algebraic function field defined over Univariate rational function field over GF(2) by
-$.1^2 + $.1 + $.0^14 + $.0^13 + $.0^9 + $.0^8 + $.0^7 + $.0^5 + $.0^4 + $.0^2 + $.0, Algebraic function field defined over Univariate rational function field over GF(2) by
-$.1^2 + $.1 + $.0^14 + $.0^13 + $.0^12 + $.0^9 + $.0^8 + $.0^7 + $.0^5 + $.0^4 + $.0^3 + $.0]
