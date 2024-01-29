@@ -10,9 +10,9 @@ The computation is broken down into the following steps:
 
 4) ```curve_check.m```: Magma code that checks whether each of the candidate curves in ```./flats/unfiltered/``` is integral of genus 6 and computes their point count over $\mathbb{F}_{2^i}$ for $i=1,2,3,4,5,6$. The coefficients of the quadrics that intersect its flat and $Gr(2,5)$ in a smooth curve of genus 6 in $\mathbf{P}^9$ are then stored in ```./data_unfiltered/```. 
 
-5) ```generic_part_4.py``` - Helper Python code that groups together curves in ```./data_unfiltered/``` with the same point counts over $\mathbb{F}_{2^i}$ for $i=1,2,3,4,5,6$ and stores the regrouped curves in ```./data_unfiltered_updated/'''. 
+5) ```generic_part_4.py``` - Helper Python code that groups together curves in ```./data_unfiltered/``` with the same point counts over $\mathbb{F}_{2^i}$ for $i=1,2,3,4,5,6$ and stores the regrouped curves in ```./data_unfiltered_updated/```. 
 
-6) ```isom_class_check.m```: Magma code that computes the distinct isomorphism classes of curves in ```./data_unfiltered_updated/''' and stores each isomorphism class in ./sorted_data. For each isomorphism class, it also computes the order of its automorphism group over $\mathbb{F}_2$.  
+6) ```isom_class_check.m```: Magma code that computes the distinct isomorphism classes of curves in ```./data_unfiltered_updated/``` and stores each isomorphism class in ./sorted_data. For each isomorphism class, it also computes the order of its automorphism group over $\mathbb{F}_2$.  
 
 We have the following (nonstacky, stacky) count for the number of isomorphism classes of generic curves of genus 6 over $\mathbb{F}_2$ corresponding to each flat:
 - flat 0: (2449, 2439)
