@@ -21,3 +21,4 @@ for counts in counts_list:
         continue
     l2 = [function_field_from_curve(j) for j in l]
     assert all(len(magma.Isomorphisms(j1, j2)) == 0 for j1, j2 in combinations(l2, 2))
+

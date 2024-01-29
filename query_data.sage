@@ -10,6 +10,7 @@ print("#M_6(F_2) = {}".format(sum(1/isom_order for (_, isom_order, _, _, _) in c
 print("#M_6,1(F_2) = {}".format(sum(1/isom_order*counts[0] for (counts, isom_order, _, _, _) in curves)))
 print("#M_6,2(F_2) = {}".format(sum(1/isom_order*2*binomial(counts[0],2) for (counts, isom_order, _, _, _) in curves)))
 print("#M_6,2/S_2(F_2) = {}".format(sum(1/isom_order*(binomial(counts[0],2)+(counts[1]-counts[0])/2) for (counts, isom_order, _, _, _) in curves)))
+print("#M_6,3(F_2) = {}".format(sum(1/isom_order*6*binomial(counts[0],3) for (counts, isom_order, _, _, _) in curves)))
 print()
 
 # Identify automorphism groups.
@@ -22,6 +23,9 @@ print()
 print("Curves with 10 or more points:")
 print([j for j in curves if j[0][0] >= 10])
 print()
+
+# Confirm that there are no curves with zero F_8-points.
+assert all(j[4] != "generic" or j[0][2] > 0 for j in curves)
 
 # Identify zeta functions arising from curves, and confirm that they obey RH.
 counts_with_curves = curves_by_zeta.keys()
