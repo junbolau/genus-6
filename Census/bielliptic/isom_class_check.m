@@ -31,7 +31,7 @@
 
 */
 
-OutputFileName := "ff_isom_" cat InputFileName;
+OutputFileName := "isom_" cat InputFileName;
 LinesOfInputFile := Split(Read(InputFileName), "\n");
 
 L := #LinesOfInputFile;
@@ -60,26 +60,27 @@ function FindIndex(TxtFile, InitialPointCounts,StartingIndex)
     end for;
 end function;
 
-function count_automs(F)
+function AutomorphismGroupCorrected(F)
     try
-        return #AutomorphismGroup(F);
+        return AutomorphismGroup(F);
     catch e
-        /* An error can occur when Automorphisms(F) returns a list with repetitions. */
+        /* When this error occurs, Automoprhisms(F) is still assumed to return a list
+           of automorphisms which generates the full groups, but may be incomplete and/or
+           include repetitions. */
         L := Automorphisms(F);
-        L1 := [* *];
-        for i in L do
-            match := false;
-            for j in L1 do
-                if Equality(i, j) then
-                    match := true;
-                    break;
-                end if;
+        G := FreeGroup(#L);
+        rels := [];
+        for i in [1..#L] do
+            for j in [1..#L] do
+                g := Composition(L[i], L[j]);
+                for k in [1..#L] do
+                    if Equality(g, L[k]) then
+                        Append(~rels, G.i*G.j*G.k^(-1));
+                    end if;
+                end for;
             end for;
-            if not match then
-                Append(~L1, i);
-            end if;
         end for;
-        return #L1;
+        return quo<G|rels>;
     end try;
 end function;
 
@@ -87,22 +88,24 @@ end function;
 i := 1;
 while i le L do
     lst := eval(LinesOfInputFile[i]);
-    ct := lst[1];
     supp := lst[2];
-    F0 := FFConstruction(supp);
-    autsize := count_automs(F0);
-    fprintf OutputFileName, "[" cat "%o" cat "," cat "%o" cat "]" cat "\n", supp[1],autsize;
+    F0 := FFConstruction(supp[1]);
+    ct := [NumberOfPlacesOfDegreeOneECF(F0,n) : n in [1..6]];
+    G := IdentifyGroup(AutomorphismGroupCorrected(F0));
+
+    fprintf OutputFileName, "[" cat "%o" cat "," cat "'" cat "%o" cat "'" cat "," cat "%o" cat "," cat "%o" cat "]" cat "\n", ct, G, supp[1],supp[2];
 
     tmp := [F0];
     j := FindIndex(LinesOfInputFile,ct,i);
     for ind in [i..j] do
         lst2 := eval(LinesOfInputFile[ind]);
         supp2 := lst2[2];
-        F02 := FFConstruction(supp2);
+        F02 := FFConstruction(supp2[1]);
         if forall(u){m : m in tmp | #Isomorphisms(F02,m) eq 0 } eq true then
             Append(~tmp,F02);
-            autsize := count_automs(F02);
-            fprintf OutputFileName, "[" cat "%o" cat "," cat "%o" cat "]" cat "\n", supp2[1],autsize;
+            G2 := IdentifyGroup(AutomorphismGroupCorrected(F02));
+            ct2 := [NumberOfPlacesOfDegreeOneECF(F02,n) : n in [1..6]];
+            fprintf OutputFileName, "[" cat "%o" cat ", " cat "'" cat "%o" cat "'" cat ", " cat "%o" cat "," cat "%o" cat "]" cat "\n", ct2, G2, supp2[1],supp2[2];
         end if;
     end for;
     i := j + 1;

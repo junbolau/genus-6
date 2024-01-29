@@ -12,13 +12,13 @@ chmod u+x RUN
 OutputFileName := InputFileName;
 i := StringToInteger(InputFileName[1]);
 
-P<x,y,z> := ProjectiveSpace(FiniteField(2),2);
+P<x,y> := AffineSpace(FiniteField(2),2);
 EC_list := [
-            (y^2)*z + y*z^2 + x^3 + x*z^2 + z^3,
-            (y^2)*z + x*y*z + y*z^2 + x^3 + z^3,
-            (y^2)*z + y*z^2 + x^3,
-            (y^2)*z + x*y*z + x^3 + z^3,
-            (y^2)*z + y*z^2 + x^3 + x*z^2
+            (y^2) + y + x^3 + x + 1,
+            (y^2) + x*y + y + x^3 + 1,
+            (y^2) + y + x^3,
+            (y^2) + x*y + x^3 + 1,
+            (y^2) + y + x^3 + x
             ];
 
 f := EC_list[i];
@@ -187,7 +187,7 @@ for ram in [1..5] do
                 if Genus(F1) eq 6 then
                     cpc := ([NumberOfPlacesOfDegreeOneECF(F1,n) : n in [1..6]]);
                     pol:= DefiningPolynomial(RationalExtensionRepresentation(F1));
-                    fprintf OutputFileName, "[" cat "%o" cat ",[" cat "%o" cat "]]" cat "\n", cpc,pol;
+                    fprintf OutputFileName, "[" cat "%o" cat ",[" cat "%o" cat "]" cat ",[" cat "%o" cat "]]" cat "\n", cpc,pol, f;
                 end if;
             end if;
         end for;
