@@ -1,0 +1,2 @@
+#!/bin/sh
+magma -b InputFileName:=unfiltered.txt ../pc_add.m &
