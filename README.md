@@ -17,8 +17,8 @@ The directory ```Census``` contains the code and data for each stratum in the Br
 Some additional utility files can be found in this directory:
 
 - ```assemble_data.sage```: compiles a Sage list of representatives of isomorphism classes.
-- ```query_data.sage```: provides some examples of how to query the data.
-- test_nonisomorphism.sage```: verifies that all of the curves are pairwise nonisomorphic (even across Brill-Noether strata).
+- ```query_data.sage```: provides some examples of how to query the data. This uses the file ```weil_poly_utils.sage``` which we imported from [this repo](https://github.com/kedlaya/same-class-number).
+- ```test_nonisomorphism.sage```: verifies that all of the curves are pairwise nonisomorphic (even across Brill-Noether strata).
 
 Our data is also available via the table of isogeny classes of abelian varieties over finite fields in the [LMFDB](https://www.lmfdb.org). 
 

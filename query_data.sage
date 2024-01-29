@@ -1,4 +1,5 @@
 load("assemble_data.sage")
+load("weil_poly_utils.sage")
 
 # Count distinct zeta functions.
 print("{} distinct zeta functions".format(len(curves_by_zeta)))
@@ -38,6 +39,11 @@ newton_polys = set(tuple(u.newton_slopes(2)) for u in zetas_with_curves)
 print("Newton polygons found:")
 print(newton_polys)
 print()
+
+# Tabulate supersingular curves.
+supersingular_counts = [t for t in counts_with_curves if set(weil_poly_from_point_count(t,6).newton_slopes(2)) == set([1/2])]
+supersingular_curves = [i for t in supersingular_counts for i in curves_by_zeta[t]]
+print("{} supersingular curves found, with {} distinct zeta functions".format(len(supersingular_curves), len(supersingular_counts)))
 
 # Check computations in "The relative class number problem for function fields, III".
 targets6 = [(4, 14, 16, 18, 14, 92),
