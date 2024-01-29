@@ -1,4 +1,5 @@
 load("assemble_data.sage")
+load("Census/Shared/weil_poly_utils.sage")
 
 curves_by_zeta = defaultdict(list)
 for (counts, isom_order, isom_type, stratum, eqn) in curves:
