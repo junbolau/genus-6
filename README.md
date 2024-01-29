@@ -19,6 +19,7 @@ The subdirectory ```Census/Shared``` includes some utility code taken from https
 Some additional utility files can be found in this directory:
 
 - ```assemble_data.sage```: compiles a Sage list of representatives of isomorphism classes.
+- ```data-to-txtfile.sage```: compiles a list of isogeny classes of Jacobians indexed by their LMFDB labels.
 - ```query_data.sage```: provides some examples of how to query the data.
 - ```test_nonisomorphism.sage```: verifies that all of the curves are pairwise nonisomorphic (even across Brill-Noether strata).
 
