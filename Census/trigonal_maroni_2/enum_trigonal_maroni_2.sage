@@ -7,7 +7,9 @@ sys.path.append(parent)
 
 load_attach_path(parent)
 
-load('preamble.sage')
+load('orbits.sage')
+load('linalg.sage')
+load('weil_poly_utils.sage')
 
 # Construct the sets of F_2_i-rational points for a specific (2,1)-hypersurface X_1
 # in P^1 X P^2 for i = 1,2,3,4
@@ -90,15 +92,6 @@ monos13 = [prod(x) for x in itertools.product([prod(y) for y in itertools.combin
 
 coords13 = {x: vector(F, (mu(*x[0], *x[1]) for mu in monos13)) for x in S}
 
-#load("weil_poly_dim6.sage")
-#load("weil_poly_utils.sage")
-
-#pointcounts = []
-#for pol in data: # data comes from weil_poly_dim6.sage 
-#    pointcounts.append(tuple(point_count_from_weil_poly(pol.reverse(),4,q=2)))
-    
-#with open("pointcounts.sage", "w") as f:
-#    f.write( "data = " +str(pointcounts))
 
 load("pointcounts.sage")
 
@@ -144,21 +137,3 @@ for j in range(23):
                     f.write(str(tmp))
                     f.write('\n')
     f.close()
-
-
-
-
-# Close out this case
-"""
-I1 = P.ideal([x0,x1])
-I2 = P.ideal([y0,y1,y2])
-CR = magma.CoxRing(P, [I1,I2], [[1,1,0,0,0],[0,0,1,1,1]], [])
-proj = CR.ToricVariety()
-
-with open("ss_trigonalmaroni2.txt", "w") as f:
-    for i in range(0,10): 
-        print('Handling curves with ', i, 'F_2 points')
-        f.write('curves with ' + str(i) + ' F_2 points')
-        lst = closeout(6, curves[(i,)], X=proj)
-        f.write(str(lst))
-"""

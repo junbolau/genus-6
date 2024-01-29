@@ -1,4 +1,3 @@
-
 OutputFileName := "./data_trigonal_maroni_2.txt";
 Input := "./sorted_data/" cat Input;
 LinesOfInputFile := Split(Read(Input), "\n");
@@ -34,10 +33,13 @@ function FFConstruction(fsupp)
     for k in fsupp do
         pol +:= monos13[k+1];
         end for;
+    R1<x> := RationalFunctionField(GF(2), 1);
+    R2<y> := RationalFunctionField(R1, 1);
+    f := Evaluate(pol, [1, x, 1, y, (x^2+1)/x * y]) * x^3;
     Y_ := Scheme(X,[pol, (x0^2+x1^2)*y1 + x0*x1*y2]);
     C_ := Curve(Y_);
     F_ := FunctionField(C_);
-    return AlgorithmicFunctionField(F_);
+    return f, AlgorithmicFunctionField(F_);
 end function;
 
 function AutomorphismGroupCorrected(F)
@@ -66,12 +68,10 @@ end function;
 
 for MyLine in LinesOfInputFile do
     fsupp := eval(MyLine);
-    F := FFConstruction(fsupp);
-    B := Parent(DefiningPolynomial(F));
-    A := BaseRing(B);
-    AssignNames(~A, ["x"]);
-    AssignNames(~B, ["y"]);
-    poly := DefiningPolynomial(F);
+    f, F := FFConstruction(fsupp);
+    R1<x> := RationalFunctionField(GF(2), 1);
+    R2<y> := RationalFunctionField(R1, 1);
+    poly := R2!f;
     cpc := ([NumberOfPlacesOfDegreeOneECF(F,n) : n in [1..6]]);
     G := IdentifyGroup(AutomorphismGroupCorrected(F));
     fprintf OutputFileName, "[" cat "%o" cat "," cat "'" cat "%o" cat "'" cat "," cat "%o" cat "]" cat "\n", cpc, G, poly;
