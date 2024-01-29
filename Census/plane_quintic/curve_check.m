@@ -32,7 +32,7 @@
 
 */
 
-OutputFileName := "genus_" cat InputFileName;
+OutputFileName := "cc_" cat InputFileName;
 LinesOfInputFile := Split(Read(InputFileName), "\n");
 
 R<x0,x1,x2> := PolynomialRing(GF(2),3);
