@@ -2,7 +2,7 @@ This collection of code computes all isomorphism classes of Brill-Noether-genera
 
 The computation is broken down into the following steps: 
 
-1) ```generic_part_1.sage```: Identify orbit representatives for the action of $GL(5, \mathbb{F}_2)$ on 4-tuples of points in $\mathbf{P}^9(\mathbb{F}_2)^{\vee}$. There are 57 such flats, whose coordinates are stored in ```./flats/'''. Only twenty of them intersect the Grassmannian $Gr(2,5)$ on an irreducible surface in $\mathbf{P}^9$. 
+1) ```generic_part_1.sage```: Identify orbit representatives for the action of $GL(5, \mathbb{F}_2)$ on 4-tuples of points in $\mathbf{P}^9(\mathbb{F}_2)^{\vee}$. There are 57 such flats, whose coordinates are stored in ```./flats/```. Only twenty of them intersect the Grassmannian $Gr(2,5)$ on an irreducible surface in $\mathbf{P}^9$. 
 
 2) ```generic_part_2.sage```: For each of the twenty flats whose intersection with Gr(2,5) is an irreducible surface in $\mathbf{P}^9$, writes in ```./flats/unfiltered''' the $2^21$ quadrics whose intersection with their respective flat and Gr(2,5) in $\mathbf{P}^9$ may give rise to a smooth curve of genus 6. 
 
