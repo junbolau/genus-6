@@ -1,6 +1,7 @@
 This folder contains files used for the calculation of F_2-isomorphism classes of bielliptic curves over F_2.
-  
-- ```data_bielliptic.txt``` contains the isomorphism classes. Each line is of the form ```[ point count, group label, function field polynomial representation, base elliptic curve]```.
+
+- ```data_bielliptic.txt``` contains the isomorphism classes. Each line is of the form ```[ point count, group label, function field polynomial representation]```.
+- ```data_bielliptic_with_base.txt``` contains the isomorphism classes. Each line is of the form ```[ point count, group label, function field polynomial representation, base elliptic curve]```.
 - There are 1530 isomorphism classes of bielliptic curves and the weighted count by the automorphism group is 744.
 - Running the bash command ```wc -l sorted_{0..9}.txt``` gives 5593 bielliptic curve equations before isomorphism class tests. 
 
