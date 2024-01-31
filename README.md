@@ -11,7 +11,7 @@ The directory ```Census``` contains the code and data for each stratum in the Br
 - Trigonal curves of Maroni invariant 0 (`Census/trigonal_maroni_0`)
 - Trigonal curves of Maroni invariant 2 (`Census/trigonal_maroni_2`)
 - Bielliptic curves (`Census/bielliptic`)
-- Smooth plane quintic curves (`Census/plane_quintics`)
+- Smooth plane quintic curves (`Census/plane_quintic`)
 - All others (`Census/generic`)
 
 The subdirectory ```Census/Shared``` includes some utility code taken from https://github.com/kedlaya/same-class-number.
