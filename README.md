@@ -23,6 +23,8 @@ Some additional utility files can be found in this directory:
 - ```query_data.sage```: provides some examples of how to query the data.
 - ```test_nonisomorphism.sage```: verifies that all of the curves are pairwise nonisomorphic (even across Brill-Noether strata).
 
+ The computations were performed using SageMath version 10.2.beta1 and Magma V2.28-3.
+
 Our data is also available via the table of isogeny classes of abelian varieties over finite fields in the [LMFDB](https://www.lmfdb.org). 
 
 We thank the Simons Collaboration in Arithmetic Geometry, Number Theory, and Computation and Boston University's Department of Mathematics and Statistics for providing computational resources for this project. 
