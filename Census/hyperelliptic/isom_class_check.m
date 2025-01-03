@@ -71,7 +71,7 @@ while i le L do
         
         if forall(u){m : m in tmp | #Isomorphisms(F02,m) eq 0 } eq true then
             Append(~tmp,F02);
-            ct2 := [NumberOfPlacesOfDegreeOneECF(F0,n) : n in [1..6]];
+            ct2 := [NumberOfPlacesOfDegreeOneECF(F02,n) : n in [1..6]];
             G2 := IdentifyGroup(AutomorphismGroupCorrected(F02));
             fprintf OutputFileName, "[" cat "%o" cat "," cat "'" cat "%o" cat "'" cat "," cat "%o" cat "]" cat "\n", ct2, G2, supp2[1];
         end if;

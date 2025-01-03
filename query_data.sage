@@ -9,9 +9,11 @@ print()
 
 print("#M_6(F_2) = {}".format(sum(1/isom_order for (_, isom_order, _, _, _) in curves)))
 print("#M_6,1(F_2) = {}".format(sum(1/isom_order*counts[0] for (counts, isom_order, _, _, _) in curves)))
-print("#M_6,2(F_2) = {}".format(sum(1/isom_order*2*binomial(counts[0],2) for (counts, isom_order, _, _, _) in curves)))
 print("#M_6,2/S_2(F_2) = {}".format(sum(1/isom_order*(binomial(counts[0],2)+(counts[1]-counts[0])/2) for (counts, isom_order, _, _, _) in curves)))
+print("#M_6,2(F_2) = {}".format(sum(1/isom_order*2*binomial(counts[0],2) for (counts, isom_order, _, _, _) in curves)))
+print("#M_6,3/S_3(F_2) = {}".format(sum(1/isom_order*(binomial(counts[0],3)+counts[0]*(counts[1]-counts[0])/2+(counts[2]-counts[0])/3) for (counts, isom_order, _, _, _) in curves)))
 print("#M_6,3(F_2) = {}".format(sum(1/isom_order*6*binomial(counts[0],3) for (counts, isom_order, _, _, _) in curves)))
+print("#M_6,4/S_4(F_2) = {}".format(sum(1/isom_order*(binomial(counts[0],4)+binomial(counts[0],2)*(counts[1]-counts[0])/2+counts[0]*(counts[2]-counts[0])/3+binomial((counts[1]-counts[0])/2,2)+(counts[3]-counts[1])/4) for (counts, isom_order, _, _, _) in curves)))
 print()
 
 # Identify automorphism groups.
