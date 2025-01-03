@@ -7,7 +7,6 @@ sys.path.append(parent)
 
 load_attach_path(parent)
 
-load('preamble.sage')
 
 # Read from disk the precomputed data about codimension-4 flats in P^9
 F = GF(2)

@@ -7,7 +7,7 @@ sys.path.append(parent)
 
 load_attach_path(parent)
 
-load('preamble.sage')
+load('./Shared/orbits.sage')
 
 # Construct generators for GL(5,F_2) acting on \bigvee^2 F_2^5
 F = GF(2)
@@ -51,9 +51,9 @@ while H.subgroup(gens).order() != H.order():
 
 # Use the action of GL(4, F_2) to identify 4-tuples whose spans are G-equivalent
 edges = []
-for mats in green_nodes(tree, 4):
+for mats in green_nodes(tree, 3):
     for g in gens:
-        mats0 = tuple(sum(g[i,j]*mats[j] for j in range(4)) for i in range(4))
+        mats0 = tuple(sum(g[i,j]*mats[j] for j in range(3)) for i in range(4))
         for v in mats0:
             v.set_immutable()
         mats1, g1 = orbit_rep_from_tree(G, tree, mats0, apply_group_elem, optimized_rep)

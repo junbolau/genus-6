@@ -1,5 +1,6 @@
 import sys
 import os 
+from collections import defaultdict
 
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
@@ -7,9 +8,9 @@ sys.path.append(parent)
 
 load_attach_path(parent)
 
-load('orbits.sage')
-load('linalg.sage')
-load('weil_poly_utils.sage')
+load('./Shared/orbits.sage')
+load('./Shared/linalg.sage')
+load('./Shared/weil_poly_utils.sage')
 
 # Construct the set of F_2-rational points of P_1 \times P_1
 F = GF(2)
