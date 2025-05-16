@@ -1,7 +1,7 @@
 ## A Census of Curves of Genus 6 over $\mathbb{F}_2$
 ### by Yongyuan Huang, Kiran S. Kedlaya, and Jun Bo Lau
 
-This repository contains the code (written in SageMath and Magma) and data used to build a census of curves of genus 6 over the finite field $\mathbb{F}_2$. This is based primarily on Kedlaya's paper "The relative class number one problem for function fields, III" and its [associated code repository](https://github.com/kedlaya/same-class-number). Some findings:
+This repository contains the code (written in SageMath and Magma) and data used to build a census of curves of genus 6 over the finite field $\mathbb{F}_2$. A detailed write-up our computation including related mathematical discussions can be found [here](https://arxiv.org/abs/2402.00716). Our computation is based on Kedlaya's paper "The relative class number one problem for function fields, III" and its [associated code repository](https://github.com/kedlaya/same-class-number). Some findings:
 - There are 72227 isomorphism classes and 38327 isogeny classes of curves of genus 6 over $\mathbb{F}_2$.
 - \# $\mathcal{M}_6(\mathbb{F}_2)= 68615$. 
 
